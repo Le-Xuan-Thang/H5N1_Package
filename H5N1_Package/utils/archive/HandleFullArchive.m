@@ -20,38 +20,38 @@
 %____________________________________________________________________________________
 
 function [Archive_X_Chopped, Archive_F_Chopped, Archive_mem_ranks_updated, Archive_member_no] = HandleFullArchive(Archive_X, Archive_F, Archive_member_no, Archive_mem_ranks, ArchiveMaxSize)
-% HandleFullArchive - Xử lý kho lưu trữ khi số lượng phần tử vượt quá giới hạn
+% HandleFullArchive - Handle archive when number of elements exceeds the limit
 %
-% Cú pháp:
+% Syntax:
 %   [Archive_X_Chopped, Archive_F_Chopped, Archive_mem_ranks_updated, Archive_member_no] = 
 %       HandleFullArchive(Archive_X, Archive_F, Archive_member_no, Archive_mem_ranks, ArchiveMaxSize)
 %
-% Đầu vào:
-%   Archive_X         - Ma trận các biến quyết định trong kho lưu trữ
-%   Archive_F         - Ma trận các giá trị mục tiêu trong kho lưu trữ
-%   Archive_member_no - Số lượng phần tử hiện tại trong kho lưu trữ
-%   Archive_mem_ranks - Vector xếp hạng các phần tử trong kho lưu trữ
-%   ArchiveMaxSize    - Kích thước tối đa cho phép của kho lưu trữ
+% Inputs:
+%   Archive_X         - Matrix of decision variables in archive
+%   Archive_F         - Matrix of objective values in archive
+%   Archive_member_no - Current number of elements in archive
+%   Archive_mem_ranks - Ranking vector of elements in archive
+%   ArchiveMaxSize    - Maximum allowed size of archive
 %
-% Đầu ra:
-%   Archive_X_Chopped        - Ma trận các biến quyết định sau khi cắt giảm
-%   Archive_F_Chopped        - Ma trận các giá trị mục tiêu sau khi cắt giảm
-%   Archive_mem_ranks_updated - Vector xếp hạng đã cập nhật
-%   Archive_member_no        - Số lượng phần tử mới trong kho lưu trữ
+% Outputs:
+%   Archive_X_Chopped        - Matrix of decision variables after reduction
+%   Archive_F_Chopped        - Matrix of objective values after reduction
+%   Archive_mem_ranks_updated - Updated ranking vector
+%   Archive_member_no        - New number of elements in archive
 
-    % Lặp cho đến khi số lượng phần tử nằm trong giới hạn cho phép
+    % Loop until number of elements is within allowed limit
     for i = 1:size(Archive_F,1) - ArchiveMaxSize
-        % Chọn phần tử để loại bỏ bằng phương pháp Roulette Wheel
+        % Select element to remove using Roulette Wheel method
         index = RouletteWheelSelection(Archive_mem_ranks);
         
-        % Loại bỏ phần tử được chọn khỏi kho lưu trữ
+        % Remove selected element from archive
         Archive_X = [Archive_X(1:index-1,:); Archive_X(index+1:Archive_member_no,:)];
         Archive_F = [Archive_F(1:index-1,:); Archive_F(index+1:Archive_member_no,:)];
         Archive_mem_ranks = [Archive_mem_ranks(1:index-1) Archive_mem_ranks(index+1:Archive_member_no)];
         Archive_member_no = Archive_member_no - 1;
     end
 
-    % Cập nhật kết quả
+    % Update results
     Archive_X_Chopped = Archive_X;
     Archive_F_Chopped = Archive_F;
     Archive_mem_ranks_updated = Archive_mem_ranks;

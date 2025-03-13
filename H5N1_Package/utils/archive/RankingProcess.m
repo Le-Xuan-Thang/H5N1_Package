@@ -20,57 +20,57 @@
 %____________________________________________________________________________________
 
 function ranks = RankingProcess(Archive_F, ArchiveMaxSize, obj_no)
-% RankingProcess - Tính toán xếp hạng cho các phần tử trong kho lưu trữ
+% RankingProcess - Calculate rankings for elements in the archive
 %
-% Cú pháp:
+% Syntax:
 %   ranks = RankingProcess(Archive_F, ArchiveMaxSize, obj_no)
 %
-% Đầu vào:
-%   Archive_F      - Ma trận các giá trị mục tiêu trong kho lưu trữ
-%   ArchiveMaxSize - Kích thước tối đa cho phép của kho lưu trữ
-%   obj_no        - Số lượng mục tiêu cần tối ưu
+% Inputs:
+%   Archive_F      - Matrix of objective values in the archive
+%   ArchiveMaxSize - Maximum allowed size of the archive
+%   obj_no        - Number of objectives to optimize
 %
-% Đầu ra:
-%   ranks         - Vector xếp hạng của các phần tử
+% Outputs:
+%   ranks         - Ranking vector of elements
 
     global my_min;
     global my_max;
 
-    % Cập nhật giá trị min và max toàn cục
+    % Update global min and max values
     if size(Archive_F,1) == 1 && size(Archive_F,2) == 2
-        % Trường hợp đặc biệt: chỉ có 1 phần tử và 2 mục tiêu
+        % Special case: only 1 element and 2 objectives
         my_min = Archive_F;
         my_max = Archive_F;
     elseif size(Archive_F,1) == 1 && size(Archive_F,2) == 3
-        % Trường hợp đặc biệt: chỉ có 1 phần tử và 3 mục tiêu
+        % Special case: only 1 element and 3 objectives
         my_min = Archive_F;
         my_max = Archive_F;
     else
-        % Trường hợp thông thường: nhiều phần tử
+        % Normal case: multiple elements
         my_min = min(Archive_F);
         my_max = max(Archive_F);
     end
 
-    % Tính bán kính lân cận cho mỗi mục tiêu
+    % Calculate neighborhood radius for each objective
     r = (my_max - my_min) / 20;
     
-    % Khởi tạo vector xếp hạng
+    % Initialize ranking vector
     ranks = zeros(1, size(Archive_F,1));
 
-    % Tính xếp hạng cho từng phần tử
+    % Calculate ranking for each element
     for i = 1:size(Archive_F,1)
         ranks(i) = 0;
         for j = 1:size(Archive_F,1)
-            % Đếm số mục tiêu nằm trong lân cận
+            % Count objectives within neighborhood
             flag = 0;
             for k = 1:obj_no
-                % Kiểm tra khoảng cách giữa hai phần tử trên mỗi mục tiêu
+                % Check distance between two elements on each objective
                 if abs(Archive_F(j,k) - Archive_F(i,k)) < r(k)
                     flag = flag + 1;
                 end
             end
             
-            % Nếu tất cả mục tiêu đều nằm trong lân cận
+            % If all objectives are within neighborhood
             if flag == obj_no
                 ranks(i) = ranks(i) + 1;
             end
