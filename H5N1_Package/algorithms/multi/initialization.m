@@ -19,8 +19,27 @@
 %   DOI: http://dx.doi.org/10.1016/j.advengsoft.2017.07.002
 %____________________________________________________________________________________
 
-% This function initializes the first population of viruses
 function Positions = initialization(nVirus, dim, ub, lb)
+% initialization - Initialize the first population of viruses for multi-objective optimization
+%
+% Syntax:
+%   Positions = initialization(nVirus, dim, ub, lb)
+%
+% Inputs:
+%   nVirus  - Number of viruses in the population
+%   dim     - Number of dimensions (decision variables)
+%   ub      - Upper bound of variables (scalar or vector)
+%   lb      - Lower bound of variables (scalar or vector)
+%
+% Outputs:
+%   Positions - Matrix of initialized positions (nVirus × dim)
+%
+% Description:
+%   This function creates an initial population of viruses with random positions
+%   within the specified bounds. If scalar bounds are provided, they are
+%   replicated for all dimensions. The function ensures all positions are
+%   within the specified bounds.
+
     % Check if the boundaries are scalar or vector
     if size(lb,2) == 1
         lb = repmat(lb,1,dim);

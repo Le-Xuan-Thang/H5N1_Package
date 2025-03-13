@@ -1,39 +1,47 @@
 %_________________________________________________________________________________
-%  Salp Swarm Algorithm (SSA) source codes version 1.0
+%  H5N1 algorithm source codes version 1.0
 %
-%  Developed in MATLAB R2016a
+%  Developed in MATLAB R2022a
 %
-%  Author and programmer: Seyedali Mirjalili
+%  Author and programmer: Le Xuan Thang
 %
-%         e-Mail: ali.mirjalili@gmail.com
-%                 seyedali.mirjalili@griffithuni.edu.au
+%         e-Mail: lexuanthang.official@gmail.com
+%                 lexuanthang.official@outlook.com
+%         website: https://lexuanthang.vn
 %
-%       Homepage: http://www.alimirjalili.com
-%
-%   Main paper:
-%   S. Mirjalili, A.H. Gandomi, S.Z. Mirjalili, S. Saremi, H. Faris, S.M. Mirjalili,
-%   Salp Swarm Algorithm: A bio-inspired optimizer for engineering design problems
-%   Advances in Engineering Software
-%   DOI: http://dx.doi.org/10.1016/j.advengsoft.2017.07.002
+%   Main paper: Le, T.X., Bui, T.T. and Tran, H.N. (2025), "The H5N1 algorithm: a viral-inspired optimization for solving real-world engineering problems", Engineering Computations 
+%   DOI:https://doi.org/10.1108/EC-05-2024-0472
 %____________________________________________________________________________________
 
+function Positions = initialization(SearchAgents_no, dim, ub, lb)
+% initialization - Initialize the first population of search agents
+%
+% Syntax:
+%   Positions = initialization(SearchAgents_no, dim, ub, lb)
+%
+% Inputs:
+%   SearchAgents_no - Number of search agents
+%   dim            - Number of dimensions
+%   ub             - Upper bound of variables
+%   lb             - Lower bound of variables
+%
+% Outputs:
+%   Positions      - Matrix of initialized positions
 
-% This function initialize the first population of search agents
-function Positions=initialization(SearchAgents_no,dim,ub,lb)
+    Boundary_no = size(ub,1); % number of boundaries
 
-Boundary_no= size(ub,1); % numnber of boundaries
+    % If the boundaries of all variables are equal and user enter a single
+    % number for both ub and lb
+    if Boundary_no == 1
+        Positions = rand(SearchAgents_no,dim).*(ub-lb)+lb;
+    end
 
-% If the boundaries of all variables are equal and user enter a signle
-% number for both ub and lb
-if Boundary_no==1
-    Positions=rand(SearchAgents_no,dim).*(ub-lb)+lb;
-end
-
-% If each variable has a different lb and ub
-if Boundary_no>1
-    for i=1:dim
-        ub_i=ub(i);
-        lb_i=lb(i);
-        Positions(:,i)=rand(SearchAgents_no,1).*(ub_i-lb_i)+lb_i;
+    % If each variable has a different lb and ub
+    if Boundary_no > 1
+        for i = 1:dim
+            ub_i = ub(i);
+            lb_i = lb(i);
+            Positions(:,i) = rand(SearchAgents_no,1).*(ub_i-lb_i)+lb_i;
+        end
     end
 end

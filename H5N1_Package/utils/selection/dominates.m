@@ -20,16 +20,28 @@
 %____________________________________________________________________________________
 
 function dominates = dominates(x, y)
-    % Check if solution x dominates solution y in a minimization context
-    % Returns true if x dominates y, false otherwise
-    
-    % x dominates y if:
-    % 1. x is not worse than y in all objectives
-    % 2. x is strictly better than y in at least one objective
-    
-    % For minimization problems:
-    % - Lower values are better
-    % - x dominates y if x <= y for all objectives and x < y for at least one
-    
+% dominates - Check if one solution dominates another in multi-objective optimization
+%
+% Syntax:
+%   dominates = dominates(x, y)
+%
+% Inputs:
+%   x - Vector of objective values for first solution
+%   y - Vector of objective values for second solution
+%
+% Outputs:
+%   dominates - Boolean indicating if x dominates y
+%
+% Description:
+%   This function determines if solution x dominates solution y in a 
+%   minimization context. For solution x to dominate solution y:
+%   1. x must be no worse than y in all objectives (x <= y)
+%   2. x must be strictly better than y in at least one objective (x < y)
+%
+%   For minimization problems:
+%   - Lower values are considered better
+%   - Returns true if x dominates y, false otherwise
+
+    % Check dominance conditions
     dominates = all(x <= y) && any(x < y);
 end

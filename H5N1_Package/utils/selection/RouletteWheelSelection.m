@@ -34,13 +34,38 @@
 % ---------------------------------------------------------
 
 function choice = RouletteWheelSelection(weights)
-accumulation = cumsum(weights);
-p = rand() * accumulation(end);
-chosen_index = -1;
-for index = 1 : length(accumulation)
-  if (accumulation(index) > p)
-    chosen_index = index;
-    break;
-  end
+% RouletteWheelSelection - Select an index based on probability weights
+%
+% Syntax:
+%   choice = RouletteWheelSelection(weights)
+%
+% Inputs:
+%   weights - Vector of weights representing selection probabilities
+%
+% Outputs:
+%   choice  - Selected index based on the probability distribution
+%
+% Description:
+%   This function implements the Roulette Wheel Selection algorithm, where each
+%   weight represents the probability of selecting the corresponding index.
+%   The probability of selection is proportional to the weight value.
+%   Example:
+%     choice = RouletteWheelSelection([1 5 3 15 8 1])
+%     % Most probable result is 4 (weight 15)
+
+    % Calculate cumulative sum of weights
+    accumulation = cumsum(weights);
+    
+    % Generate random point
+    p = rand() * accumulation(end);
+    
+    % Find the selected index
+    chosen_index = -1;
+    for index = 1 : length(accumulation)
+        if (accumulation(index) > p)
+            chosen_index = index;
+            break;
+        end
+    end
+    choice = chosen_index;
 end
-choice = chosen_index;
