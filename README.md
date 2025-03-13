@@ -1,71 +1,71 @@
 # H5N1 Algorithm Package
 
-Đây là mã nguồn chính thức cho thuật toán H5N1, được thiết kế để giải quyết các bài toán tối ưu đơn mục tiêu và đa mục tiêu trong kỹ thuật.
+This is the official source code for the H5N1 algorithm, designed to solve single-objective and multi-objective optimization problems in engineering.
 
-## Cấu trúc Thư mục
+## Directory Structure
 
 ```
 H5N1_Package/
 ├── algorithms/
-│   ├── single/                    # Thuật toán H5N1 đơn mục tiêu
-│   │   ├── SH5N1.m               # Triển khai chính
-│   │   ├── main_SH5N1.m          # File chạy chính
-│   │   ├── Get_F.m               # Hàm tính toán mục tiêu
-│   │   └── initialization.m       # Khởi tạo quần thể
+│   ├── single/                    # Single-objective H5N1 algorithm
+│   │   ├── SH5N1.m               # Main implementation
+│   │   ├── main_SH5N1.m          # Main execution file
+│   │   ├── Get_F.m               # Objective function calculation
+│   │   └── initialization.m       # Population initialization
 │   │
-│   └── multi/                     # Thuật toán H5N1 đa mục tiêu
-│       ├── MH5N1.m               # Triển khai chính
-│       ├── main_MH5N1.m          # File chạy chính
-│       └── initialization.m       # Khởi tạo quần thể
+│   └── multi/                     # Multi-objective H5N1 algorithm
+│       ├── MH5N1.m               # Main implementation
+│       ├── main_MH5N1.m          # Main execution file
+│       └── initialization.m       # Population initialization
 │
 └── utils/
-    ├── archive/                   # Quản lý kho lưu trữ
-    │   ├── UpdateArchive.m       # Cập nhật kho lưu trữ
-    │   ├── HandleFullArchive.m   # Xử lý kho lưu trữ đầy
-    │   └── RankingProcess.m      # Tính toán xếp hạng
+    ├── archive/                   # Archive management
+    │   ├── UpdateArchive.m       # Archive update
+    │   ├── HandleFullArchive.m   # Full archive handling
+    │   └── RankingProcess.m      # Ranking calculation
     │
-    ├── selection/                 # Các phương pháp chọn lọc
-    │   ├── RouletteWheelSelection.m  # Chọn lọc bánh xe roulette
-    │   └── dominates.m           # Kiểm tra quan hệ trội
+    ├── selection/                 # Selection methods
+    │   ├── RouletteWheelSelection.m  # Roulette wheel selection
+    │   └── dominates.m           # Dominance check
     │
-    ├── benchmark/                 # Các hàm benchmark
-    │   ├── ZDT.m                 # Hàm test ZDT
-    │   ├── xboundary.m           # Xử lý biên x
-    │   ├── xyboundary.m          # Xử lý biên xy
-    │   └── Get_problem.m         # Lấy bài toán test
+    ├── benchmark/                 # Benchmark functions
+    │   ├── ZDT.m                 # ZDT test function
+    │   ├── xboundary.m           # x boundary handling
+    │   ├── xyboundary.m          # xy boundary handling
+    │   └── Get_problem.m         # Test problem retrieval
     │
-    └── metrics/                   # Các metrics đánh giá
+    └── metrics/                   # Performance metrics
         └── IGD.m                 # Inverted Generational Distance
 ```
 
-## Cài đặt và Sử dụng
+## Installation and Usage
 
-1. Clone repository này về máy của bạn
-2. Mở MATLAB
-3. Điều hướng đến thư mục H5N1_Package
+1. Clone this repository to your machine
+2. Open MATLAB
+3. Navigate to the H5N1_Package directory
 
-### Chạy thuật toán đơn mục tiêu (SH5N1)
-1. Mở file `algorithms/single/main_SH5N1.m`
-2. Chạy file này trong MATLAB
+### Running Single-objective Algorithm (SH5N1)
+1. Open `algorithms/single/main_SH5N1.m`
+2. Run this file in MATLAB
 
-### Chạy thuật toán đa mục tiêu (MH5N1)
-1. Mở file `algorithms/multi/main_MH5N1.m`
-2. Chạy file này trong MATLAB
+### Running Multi-objective Algorithm (MH5N1)
+1. Open `algorithms/multi/main_MH5N1.m`
+2. Run this file in MATLAB
 
-## Yêu Cầu
-- MATLAB (R2022a trở lên)
+## Requirements
+- MATLAB (R2022a or later)
 - Optimization Toolbox
 - Global Optimization Toolbox
 
-## Tác giả
-- **Tác giả:** Lê Xuân Thắng
+## Author
+- **Author:** Le Xuan Thang
 - **Email:** 
   - lexuanthang.official@gmail.com
   - lexuanthang.official@outlook.com
 - **Website:** https://lexuanthang.vn
 
-## Trích dẫn
-Nếu bạn sử dụng mã nguồn này trong nghiên cứu của mình, vui lòng trích dẫn:
+## Citation
+If you use this code in your research, please cite:
 
 Le, T.X., Bui, T.T. and Tran, H.N. (2025), "The H5N1 algorithm: a viral-inspired optimization for solving real-world engineering problems", Engineering Computations
 
