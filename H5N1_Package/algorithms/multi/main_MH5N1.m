@@ -17,11 +17,12 @@ clc
 clear
 close all
 
-% Get current directory
-Path_dir = pwd;
+% Get root directory
+root_dir = fileparts(fileparts(fileparts(mfilename('fullpath'))));
 
-% Add path toolbox and functions
-addpath(genpath('ToolboxMOA_LXT/'));
+% Add all necessary paths
+addpath(genpath(fullfile(root_dir, 'utils'))); % Add utils folder (archive, selection, benchmark, metrics)
+addpath(fullfile(root_dir, 'algorithms', 'multi')); % Add multi-objective algorithms
 
 Algorithm_Name = 'MH5N1';
 

@@ -1,9 +1,9 @@
 %_________________________________________________________________________________
-%  SH5N1 algorithm source codes version 1.0
+%  H5N1 algorithm source codes version 1.0
 %
 %  Developed in MATLAB R2022a
 %
-%  Author: Le Xuan Thang
+%  Author and programmer: Le Xuan Thang
 %
 %         e-Mail: lexuanthang.official@gmail.com
 %                 lexuanthang.official@outlook.com
@@ -17,8 +17,13 @@ clc
 clear
 close all
 
-% Get current directory
-Path_dir = pwd;
+% Get root directory
+root_dir = fileparts(fileparts(fileparts(mfilename('fullpath'))));
+
+% Add all necessary paths
+addpath(genpath(fullfile(root_dir, 'utils'))); % Add utils folder (benchmark)
+addpath(fullfile(root_dir, 'algorithms', 'single')); % Add single-objective algorithms
+
 Algorithm_Name = 'SH5N1';
 
 %% Parameters
