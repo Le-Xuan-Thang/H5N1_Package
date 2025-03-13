@@ -2,6 +2,19 @@
 
 All notable changes to the H5N1 algorithm will be documented in this file.
 
+## [1.0.1] - 2024-03-13
+
+### Improved
+- Enhanced documentation clarity in all function headers
+- Standardized code formatting across all files
+- Improved error messages and warnings
+- Added detailed comments for complex code sections
+
+### Fixed
+- Fixed path handling in main scripts
+- Corrected typos in documentation
+- Standardized line endings across all files
+
 ## [1.0.0] - 2024-03-13
 
 ### Added

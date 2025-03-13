@@ -1,4 +1,4 @@
-# H5N1 Algorithm v1.0.0
+# H5N1 Algorithm v1.0.1
 
 This is the official source code for the H5N1 algorithm, designed to solve single-objective and multi-objective optimization problems in engineering.
 
@@ -8,7 +8,7 @@ The H5N1 algorithm is a novel viral-inspired optimization algorithm for solving 
 - Multi-objective H5N1 (MH5N1)
 
 ## Version Information
-- Current version: 1.0.0
+- Current version: 1.0.1
 - Release date: March 13, 2024
 - Status: Stable release
 - License: MIT License
